@@ -1,0 +1,14 @@
+database
+DB_DATABASE=raiments_dealer_main
+DB_USERNAME=raiments_idms
+DB_PASSWORD=Obmo;rlnNkip
+
+ftp
+user_name: idms
+user_password: E06&sIG$hY[M
+FTP Username: idms@idms.raimentsourcing.com
+FTP server: ftp.raimentsourcing.com
+FTP & explicit FTPS port:  21
+
+root
+cblFwe{YYS)a
