@@ -24,7 +24,7 @@
                                 <div class="form-group"><label>Product Details</label> 
                                     <textarea type="text" required name="product_details"  class="form-control" required autocomplete="off"></textarea>
                                     
-                                </div>
+                                </div>                                
                                 <div class="row">
                                     <div class="col-sm-10">
                                          <div class="form-group">
@@ -41,6 +41,11 @@
                                          </div>
                                     </div>
                                 </div>
+                                <?php
+                                foreach ($variable as $key => $value) {
+                                    // code...
+                                }
+                                  ?>
                                 <div class="form-group">
                                     <label>Product Catagory</label>
                                     <select id="category_id" name="category_id" class="form-control" required>

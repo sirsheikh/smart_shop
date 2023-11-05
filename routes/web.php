@@ -15,7 +15,17 @@ use App\Http\Controllers;
 // Route::group(["middleware"=>"auth"],function() {
 //     Route::post('/loginCheck', 'LoginController@loginCheck')->name('loginCheck');
 //     });
+Route::group(["namespace"=>"App\Http\Controllers\website"],function() {
+    Route::get('/', 'websiteController@index')->name('homepage');
+
+});
+
+
+Route::group(["prefix" => "admin"],function(){
 Route::group(["namespace"=>"App\Http\Controllers","middleware"=>"AuthLogCheck"],function() {
+    
+
+    
     Route::post('/loginCheck', 'LoginController@loginCheck')->name('loginCheck');
 
     Route::get('/logout', 'LoginController@logout')->name('LogOut');
@@ -65,3 +75,4 @@ Route::group(["namespace"=>"App\Http\Controllers","middleware"=>"AuthLogCheck"],
     return view('components.login');
 });
 
+});

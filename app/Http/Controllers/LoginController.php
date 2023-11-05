@@ -21,17 +21,17 @@ class LoginController extends Controller
         {
             Session::put('user_info', $valid);
 
-         return redirect('/dashboard');           
+         return redirect('admin/dashboard');           
 
         }
         else{
-            return redirect('/');
+            return redirect('admin/');
 
         }
     }
     protected function logout(){
         // dd('g');
         Session()->flush();
-        return redirect('/');
+        return redirect('admin/');
     }
 }
