@@ -1,5 +1,5 @@
 @extends('website.includes.websiteMaster')
-@section('title', 'IUB Souvenir Shop')
+@section('title', 'IUB Tech 360 Marketplace')
 @section('content')
 
 <section class="hero-area">
@@ -47,12 +47,12 @@
                             <div class="hero-small-banner"
                                 style="background-image: url('storage/assets/images/hero/slider-bnr.jpg');">
                                 <div class="content">
-                                    <h2>
-                                        
-                                    CURRENT VENDORS
+                                    <h2>   
+                                    CURRENT<br>
+                                    PARTICIPANTS
                                     </h2>
-                                    <h3>- Asus</h3>
-                                    <h3>- Walton</h3>
+                                    <h3>- Team 1</h3>
+                                    <h3>- Team 2</h3>
                                 </div>
                             </div>
                             <!-- End Small Banner -->

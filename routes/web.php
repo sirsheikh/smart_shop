@@ -22,6 +22,7 @@ Route::group(["namespace"=>"App\Http\Controllers\website"],function() {
 
 
 Route::group(["prefix" => "admin"],function(){
+    
 Route::group(["namespace"=>"App\Http\Controllers","middleware"=>"AuthLogCheck"],function() {
     
 
@@ -71,8 +72,8 @@ Route::group(["namespace"=>"App\Http\Controllers","middleware"=>"AuthLogCheck"],
 
  Route::post('/loginCheck', 'App\Http\Controllers\LoginController@loginCheck')->name('loginCheck');
 
- Route::get('/', function () {
+ Route::get('/login', function () {
     return view('components.login');
-});
+})->name('login');
 
 });
