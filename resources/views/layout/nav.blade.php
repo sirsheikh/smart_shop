@@ -23,7 +23,7 @@
     <link href="{{asset('storage/inspinia/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('storage/inspinia/css/style.css')}}" rel="stylesheet">
     <script src="{{asset('storage/inspinia/js/jquery-3.1.1.min.js')}}"></script>
-
+    @livewireStyles
 
 </head>
 @php
@@ -188,7 +188,7 @@ $v=session()->get('user_info');
 
 <!-- ChartJS-->
 <script src="{{asset('storage/inspinia/js/plugins/chartJs/Chart.min.js')}}"></script>
-
+@livewireScripts
 <!-- Toastr -->
 <!--  <script src="{{asset('storage/inspinia/js/plugins/toastr/toastr.min.js')}}"></script> -->
 
