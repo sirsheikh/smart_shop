@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Student Center</title>
+    <title>IUB TECH 360 Marketplace</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('storage/assets/images/logo/iub_logo.png')}}" />
@@ -84,7 +84,7 @@
                             </div>
                             <ul class="user-login">
                                 <li>
-                                    <a href="login.html">Sign In</a>
+                                <a class="navbar-brand" href="{{ route('login') }}">Sign In</a>
                                 </li>
                                 <li>
                                     <a href="register.html">Register</a>
@@ -102,7 +102,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3 col-7">
                         <!-- Start Header Logo -->
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="{{ route('homepage') }}">
                             <img src="{{asset('storage/assets/images/logo/iub_logo.png')}}" alt="Logo">
                         </a>
                         <!-- End Header Logo -->
@@ -143,7 +143,65 @@
                                     <span>(+880) 123 456 7890</span>
                                 </h3>
                             </div>
-                            
+                            <div class="navbar-cart">
+                                <div class="wishlist">
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-heart"></i>
+                                        <span class="total-items">0</span>
+                                    </a>
+                                </div>
+                                <div class="cart-items">
+                                    <a href="javascript:void(0)" class="main-btn">
+                                        <i class="lni lni-cart"></i>
+                                        <span class="total-items">2</span>
+                                    </a>
+                                    <!-- Shopping Item -->
+                                    <div class="shopping-item">
+                                        <div class="dropdown-cart-header">
+                                            <span>2 Items</span>
+                                            <a href="cart.html">View Cart</a>
+                                        </div>
+                                        <ul class="shopping-list">
+                                            <li>
+                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
+                                                        class="lni lni-close"></i></a>
+                                                <div class="cart-img-head">
+                                                    <a class="cart-img" href="product-details.html"><img
+                                                            src="assets/images/header/cart-items/item1.jpg" alt="#"></a>
+                                                </div>
+
+                                                <div class="content">
+                                                    <h4><a href="product-details.html">
+                                                            Apple Watch Series 6</a></h4>
+                                                    <p class="quantity">1x - <span class="amount">$99.00</span></p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
+                                                        class="lni lni-close"></i></a>
+                                                <div class="cart-img-head">
+                                                    <a class="cart-img" href="product-details.html"><img
+                                                            src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
+                                                </div>
+                                                <div class="content">
+                                                    <h4><a href="product-details.html">Wi-Fi Smart Camera</a></h4>
+                                                    <p class="quantity">1x - <span class="amount">$35.00</span></p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="bottom">
+                                            <div class="total">
+                                                <span>Total</span>
+                                                <span class="total-amount">$134.00</span>
+                                            </div>
+                                            <div class="button">
+                                                <a href="checkout.html" class="btn animate">Checkout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/ End Shopping Item -->
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -202,10 +260,10 @@
                                         <a href="index.html" class="active" aria-label="Toggle navigation">Build Career</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="vendor_form.php" class="active" aria-label="Toggle navigation">Vendor Request</a>
+                                        <a href="vendor_form.php" class="active" aria-label="Toggle navigation">Student Merchant</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="index.html" class="active" aria-label="Toggle navigation">Create Event</a>
+                                        <a href="index.html" class="active" aria-label="Toggle navigation">Tech 360</a>
                                     </li>
 
                                     <li class="nav-item">
