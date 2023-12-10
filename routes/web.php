@@ -17,8 +17,13 @@ use App\Http\Controllers;
 //     });
 Route::group(["namespace"=>"App\Http\Controllers\website"],function() {
     Route::get('/', 'websiteController@index')->name('homepage');
+    Route::get('/contact-us','websiteController@contactUS')->name('contactUS');
+    Route::post('/contact-us-save','websiteController@contactUSsave')->name('contactUSsave');
+    Route::get('/contact-us-list','websiteController@contactList')->name('contcatUsList');
 
 });
+
+
 
 
 Route::group(["prefix" => "admin"],function(){
@@ -67,6 +72,9 @@ Route::group(["namespace"=>"App\Http\Controllers","middleware"=>"AuthLogCheck"],
      Route::get('/OrdersList','OrderController@index')->name('OrdersList');
      /*------------------------customers-----------------------------------------------------------------*/
      Route::get('/CustomerList','CustomerController@index')->name('CustomerList');
+
+
+     Route::get('/contact-us-list','UnitController@contactList')->name('contcatUsList');
 
 });
 

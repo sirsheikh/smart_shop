@@ -21,4 +21,8 @@ class UnitController extends Controller
         $dataInsert=DB::table('units')->insert($request->except('_token'));
         return redirect('Units');
     }
+    public function contactList(){
+        $contactList=DB::table('contact_us')->get();
+        return view('components.contact_list',get_defined_vars());
+    }
 }

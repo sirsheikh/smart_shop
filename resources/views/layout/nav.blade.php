@@ -23,7 +23,7 @@
     <link href="{{asset('storage/inspinia/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('storage/inspinia/css/style.css')}}" rel="stylesheet">
     <script src="{{asset('storage/inspinia/js/jquery-3.1.1.min.js')}}"></script>
-
+    @livewireStyles
 
 </head>
 @php
@@ -100,6 +100,9 @@ $v=session()->get('user_info');
                             <ul class="nav nav-second-level collapse" aria-expanded="false">
                                 <li id="CustomerList"><a  href="{{route('CustomerList')}}">Customers List</a></li>                    
                             </ul>
+                        </li>
+                        <li id="contactUS">
+                            <a href="{{route('contcatUsList')}}" aria-expanded="false"><i class="fa fa-user-plus"></i> <span class="nav-label">Contact Request List</span></a>
                         </li>
                         
                         
@@ -188,9 +191,9 @@ $v=session()->get('user_info');
 
 <!-- ChartJS-->
 <script src="{{asset('storage/inspinia/js/plugins/chartJs/Chart.min.js')}}"></script>
-
+@livewireScripts
 <!-- Toastr -->
-<!--  <script src="{{asset('storage/inspinia/js/plugins/toastr/toastr.min.js')}}"></script> -->
+ <script src="{{asset('storage/inspinia/js/plugins/toastr/toastr.min.js')}}"></script>
 
 <script type="text/javascript">
     
