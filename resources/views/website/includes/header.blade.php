@@ -72,7 +72,7 @@
                             <ul class="useful-links">
                                 <li><a href="index.html">Home</a></li>
                                 <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="contact_form.html">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -267,7 +267,7 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="contact.html" aria-label="Toggle navigation">Contact Us</a>
+                                        <a href="contact_form.html" aria-label="Toggle navigation">Contact Us</a>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->

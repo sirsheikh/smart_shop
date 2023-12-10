@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 29, 2022 at 02:42 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 10, 2023 at 04:54 PM
+-- Server version: 8.0.31
+-- PHP Version: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dealer_main`
+-- Database: `smart_shop`
 --
 
 -- --------------------------------------------------------
@@ -27,14 +27,17 @@ SET time_zone = "+00:00";
 -- Table structure for table `brands`
 --
 
-CREATE TABLE `brands` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `image` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
+DROP TABLE IF EXISTS `brands`;
+CREATE TABLE IF NOT EXISTS `brands` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `image` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `brands`
@@ -49,14 +52,17 @@ INSERT INTO `brands` (`id`, `name`, `image`, `is_active`, `created_at`, `updated
 -- Table structure for table `categories`
 --
 
-CREATE TABLE `categories` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `image` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `image` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `categories`
@@ -71,13 +77,15 @@ INSERT INTO `categories` (`id`, `name`, `image`, `is_active`, `created_at`, `upd
 -- Table structure for table `companies`
 --
 
-CREATE TABLE `companies` (
-  `id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `companies`;
+CREATE TABLE IF NOT EXISTS `companies` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `logo` varchar(100) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `companies`
@@ -89,12 +97,37 @@ INSERT INTO `companies` (`id`, `name`, `logo`, `created_at`, `updated_at`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contact_us`
+--
+
+DROP TABLE IF EXISTS `contact_us`;
+CREATE TABLE IF NOT EXISTS `contact_us` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `contact_name` varchar(255) NOT NULL,
+  `contact_phone` varchar(20) NOT NULL,
+  `contact_email` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `submission_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `contact_us`
+--
+
+INSERT INTO `contact_us` (`id`, `contact_name`, `contact_phone`, `contact_email`, `message`, `submission_time`) VALUES
+(1, 'Syed Ali', '01745540795', 'godposeidon001@gmail.com', 'I just want to say that i have nothing to say', '2023-12-10 08:37:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customers`
 --
 
-CREATE TABLE `customers` (
-  `id` int(11) NOT NULL,
-  `warehouse_id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `customers`;
+CREATE TABLE IF NOT EXISTS `customers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `warehouse_id` int UNSIGNED NOT NULL,
   `customer_name` varchar(250) NOT NULL,
   `shop_name` varchar(250) NOT NULL,
   `mobile` varchar(20) NOT NULL,
@@ -102,10 +135,12 @@ CREATE TABLE `customers` (
   `credit_limit` double(10,2) NOT NULL,
   `latitude` varchar(100) NOT NULL,
   `longitude` varchar(100) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `created_by` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `warehouse_id` (`warehouse_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -113,14 +148,16 @@ CREATE TABLE `customers` (
 -- Table structure for table `production`
 --
 
-CREATE TABLE `production` (
-  `id` int(11) NOT NULL,
-  `product_id` int(11) UNSIGNED NOT NULL,
-  `Batch_Number` int(11) NOT NULL,
+DROP TABLE IF EXISTS `production`;
+CREATE TABLE IF NOT EXISTS `production` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int UNSIGNED NOT NULL,
+  `Batch_Number` int NOT NULL,
   `ProductionDate` date NOT NULL,
   `ExpiryDate` date NOT NULL,
-  `qty` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `qty` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `production`
@@ -139,22 +176,28 @@ INSERT INTO `production` (`id`, `product_id`, `Batch_Number`, `ProductionDate`, 
 -- Table structure for table `products`
 --
 
-CREATE TABLE `products` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `product_details` varchar(250) CHARACTER SET utf8 NOT NULL,
-  `code` varchar(200) CHARACTER SET utf8 NOT NULL,
-  `barcode_symbology` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
-  `brand_id` int(11) UNSIGNED NOT NULL,
-  `category_id` int(11) UNSIGNED NOT NULL,
-  `unit_id` int(11) UNSIGNED NOT NULL,
-  `variant_id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `product_details` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `code` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `barcode_symbology` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `brand_id` int UNSIGNED NOT NULL,
+  `category_id` int UNSIGNED NOT NULL,
+  `unit_id` int UNSIGNED NOT NULL,
+  `variant_id` int UNSIGNED NOT NULL,
   `alert_quantity` double DEFAULT NULL,
-  `image` longtext CHARACTER SET utf8 DEFAULT NULL,
+  `image` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
   `is_active` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `brand_id` (`brand_id`),
+  KEY `category_id` (`category_id`),
+  KEY `unit_id` (`unit_id`),
+  KEY `variant_id` (`variant_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `products`
@@ -174,17 +217,20 @@ INSERT INTO `products` (`id`, `name`, `product_details`, `code`, `barcode_symbol
 -- Table structure for table `product_prices`
 --
 
-CREATE TABLE `product_prices` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `product_id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `product_prices`;
+CREATE TABLE IF NOT EXISTS `product_prices` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `product_id` int UNSIGNED NOT NULL,
   `cost_price` double(10,2) NOT NULL,
   `sale_price` double(10,2) NOT NULL,
   `from_date` date NOT NULL,
   `to_date` date NOT NULL,
-  `is_active` tinyint(4) NOT NULL,
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `is_active` tinyint NOT NULL,
+  `created_at` int NOT NULL,
+  `updated_at` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -192,15 +238,19 @@ CREATE TABLE `product_prices` (
 -- Table structure for table `product_purchases`
 --
 
-CREATE TABLE `product_purchases` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `purchase_id` int(11) UNSIGNED NOT NULL,
-  `product_id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `product_purchases`;
+CREATE TABLE IF NOT EXISTS `product_purchases` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `purchase_id` int UNSIGNED NOT NULL,
+  `product_id` int UNSIGNED NOT NULL,
   `qty` double NOT NULL,
   `net_unit_cost` double NOT NULL,
   `total` double NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`),
+  KEY `purchase_id` (`purchase_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -209,21 +259,24 @@ CREATE TABLE `product_purchases` (
 -- Table structure for table `purchases`
 --
 
-CREATE TABLE `purchases` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `voucher_no` varchar(191) CHARACTER SET utf8 NOT NULL,
-  `warehouse_id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `purchases`;
+CREATE TABLE IF NOT EXISTS `purchases` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `voucher_no` varchar(191) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `warehouse_id` int UNSIGNED NOT NULL,
   `total_qty` double NOT NULL,
   `total_discount` double NOT NULL,
   `grand_total` double NOT NULL,
   `paid_amount` double NOT NULL,
-  `payment_status` int(11) NOT NULL,
-  `document` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `payment_status` int NOT NULL,
+  `document` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` int NOT NULL,
+  `user_id` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `warehouse_id` (`warehouse_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -232,15 +285,18 @@ CREATE TABLE `purchases` (
 -- Table structure for table `stock`
 --
 
-CREATE TABLE `stock` (
-  `id` int(11) NOT NULL,
-  `invoice_no` int(11) NOT NULL,
-  `challan_no` int(11) NOT NULL,
+DROP TABLE IF EXISTS `stock`;
+CREATE TABLE IF NOT EXISTS `stock` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `invoice_no` int NOT NULL,
+  `challan_no` int NOT NULL,
   `invoice_date` date NOT NULL,
   `total_price` double(10,2) NOT NULL,
-  `is_active` tinyint(4) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `is_active` tinyint NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `invoice_no` (`invoice_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -248,15 +304,20 @@ CREATE TABLE `stock` (
 -- Table structure for table `stock_details`
 --
 
-CREATE TABLE `stock_details` (
-  `id` int(11) NOT NULL,
-  `invoice_no` int(11) NOT NULL,
-  `product_id` int(11) UNSIGNED NOT NULL,
-  `unit_id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `stock_details`;
+CREATE TABLE IF NOT EXISTS `stock_details` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `invoice_no` int NOT NULL,
+  `product_id` int UNSIGNED NOT NULL,
+  `unit_id` int UNSIGNED NOT NULL,
   `product_rate` double(10,2) NOT NULL,
-  `product_qty` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `product_qty` int NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `invoice_no` (`invoice_no`),
+  KEY `product_id` (`product_id`),
+  KEY `unit_id` (`unit_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -264,17 +325,20 @@ CREATE TABLE `stock_details` (
 -- Table structure for table `tbl_user`
 --
 
-CREATE TABLE `tbl_user` (
-  `user_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_user`;
+CREATE TABLE IF NOT EXISTS `tbl_user` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
   `user_name` varchar(45) NOT NULL,
   `user_email` varchar(100) NOT NULL,
   `user_password` varchar(100) NOT NULL,
   `user_admin_password` varchar(100) NOT NULL,
   `user_photo` varchar(100) DEFAULT NULL,
   `user_created` datetime NOT NULL,
-  `user_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `user_warehouse_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `user_updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_warehouse_id` int NOT NULL,
+  PRIMARY KEY (`user_id`),
+  KEY `warehouse_id` (`user_warehouse_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `tbl_user`
@@ -289,15 +353,19 @@ INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_email`, `user_password`, `
 -- Table structure for table `units`
 --
 
-CREATE TABLE `units` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `unit_code` varchar(191) CHARACTER SET utf8 NOT NULL,
-  `unit_name` varchar(191) CHARACTER SET utf8 NOT NULL,
-  `unit_qty` int(11) NOT NULL,
+DROP TABLE IF EXISTS `units`;
+CREATE TABLE IF NOT EXISTS `units` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `unit_code` varchar(191) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `unit_name` varchar(191) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `unit_qty` int NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unit_code` (`unit_code`),
+  UNIQUE KEY `unit_name` (`unit_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `units`
@@ -313,13 +381,16 @@ INSERT INTO `units` (`id`, `unit_code`, `unit_name`, `unit_qty`, `is_active`, `c
 -- Table structure for table `variants`
 --
 
-CREATE TABLE `variants` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
+DROP TABLE IF EXISTS `variants`;
+CREATE TABLE IF NOT EXISTS `variants` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `is_active` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `variants`
@@ -335,13 +406,16 @@ INSERT INTO `variants` (`id`, `name`, `is_active`, `created_at`, `updated_at`) V
 -- Table structure for table `warehouses`
 --
 
-CREATE TABLE `warehouses` (
-  `id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `warehouses`;
+CREATE TABLE IF NOT EXISTS `warehouses` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `company_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `company_id` int NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `company_id` (`company_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `warehouses`
@@ -349,214 +423,6 @@ CREATE TABLE `warehouses` (
 
 INSERT INTO `warehouses` (`id`, `name`, `company_id`, `created_at`, `updated_at`) VALUES
 (1, 'HO', 1, '2022-05-15 05:09:38', '2022-05-15 05:09:38');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `brands`
---
-ALTER TABLE `brands`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
--- Indexes for table `companies`
---
-ALTER TABLE `companies`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `customers`
---
-ALTER TABLE `customers`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `warehouse_id` (`warehouse_id`);
-
---
--- Indexes for table `production`
---
-ALTER TABLE `production`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `brand_id` (`brand_id`),
-  ADD KEY `category_id` (`category_id`),
-  ADD KEY `unit_id` (`unit_id`),
-  ADD KEY `variant_id` (`variant_id`);
-
---
--- Indexes for table `product_prices`
---
-ALTER TABLE `product_prices`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `product_purchases`
---
-ALTER TABLE `product_purchases`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `purchase_id` (`purchase_id`);
-
---
--- Indexes for table `purchases`
---
-ALTER TABLE `purchases`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `warehouse_id` (`warehouse_id`);
-
---
--- Indexes for table `stock`
---
-ALTER TABLE `stock`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `invoice_no` (`invoice_no`);
-
---
--- Indexes for table `stock_details`
---
-ALTER TABLE `stock_details`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `invoice_no` (`invoice_no`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `unit_id` (`unit_id`);
-
---
--- Indexes for table `tbl_user`
---
-ALTER TABLE `tbl_user`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `warehouse_id` (`user_warehouse_id`) USING BTREE;
-
---
--- Indexes for table `units`
---
-ALTER TABLE `units`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `unit_code` (`unit_code`),
-  ADD UNIQUE KEY `unit_name` (`unit_name`);
-
---
--- Indexes for table `variants`
---
-ALTER TABLE `variants`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
--- Indexes for table `warehouses`
---
-ALTER TABLE `warehouses`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `company_id` (`company_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `brands`
---
-ALTER TABLE `brands`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `companies`
---
-ALTER TABLE `companies`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `customers`
---
-ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `production`
---
-ALTER TABLE `production`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `product_prices`
---
-ALTER TABLE `product_prices`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `product_purchases`
---
-ALTER TABLE `product_purchases`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `purchases`
---
-ALTER TABLE `purchases`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `stock`
---
-ALTER TABLE `stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `stock_details`
---
-ALTER TABLE `stock_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_user`
---
-ALTER TABLE `tbl_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `units`
---
-ALTER TABLE `units`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `variants`
---
-ALTER TABLE `variants`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `warehouses`
---
-ALTER TABLE `warehouses`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
