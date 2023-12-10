@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Smart Shop | Login</title>
+    <title>Tech 360 | Login</title>
 
     <link href="{{asset('storage/inspinia/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('storage/inspinia/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -17,8 +17,11 @@
 </head>
 
 <body class="gray-bg">
+    <div class="back-button">
+    <a href="{{ route('homepage') }}" class="back-link">&#8592;</a>
+</div>
     <div class="text-center col-lg-12 col-md-12">
-        <h1 class="logo-name">IUB Souvenir Shop</h1>
+        <h1 class="logo-name">IUB, Tech 360</h1>
     </div>
 
     <div class="middle-box text-center loginscreen animated fadeInDown">
@@ -28,7 +31,7 @@
                 <!-- <h1 class="logo-name">SS</h1> -->
 
             </div>
-            <h3>Welcome to IUB Souvenir Shop</h3>
+            <h3>Welcome to IUB, Tech 360 Marketplace</h3>
            
             <p>Login in. To see it in action.</p>
             <form  action="{{route('loginCheck')}}" method="post">

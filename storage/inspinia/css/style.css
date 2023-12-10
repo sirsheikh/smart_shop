@@ -1509,6 +1509,32 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     display: block !important;
   }
 }
+
+.back-button {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 999; /* Ensure it's on top of other elements */
+}
+
+.back-link {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 50%;
+    background: #1ab394; /* Use your preferred color scheme */
+    border: 1px solid #1ab394;
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow for depth */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.back-link:hover {
+    background: #18a689; /* Change gradient on hover */
+}
+
+
 button:focus {
   outline: 0 !important;
 }
