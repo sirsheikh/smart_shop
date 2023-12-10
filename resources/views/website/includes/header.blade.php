@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{asset('storage/assets/css/tiny-slider.css')}}" />
     <link rel="stylesheet" href="{{asset('storage/assets/css/glightbox.min.css')}}" />
     <link rel="stylesheet" href="{{asset('storage/assets/css/main.css')}}" />
+    <link href="{{asset('storage/inspinia/css/plugins/toastr/toastr.min.css')}}" rel="stylesheet">
 
 </head>
 <body>
@@ -72,7 +73,7 @@
                             <ul class="useful-links">
                                 <li><a href="index.html">Home</a></li>
                                 <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact_form.html">Contact Us</a></li>
+                                <li><a href="{{route('contactUS')}}">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -167,7 +168,7 @@
                                                         class="lni lni-close"></i></a>
                                                 <div class="cart-img-head">
                                                     <a class="cart-img" href="product-details.html"><img
-                                                            src="assets/images/header/cart-items/item1.jpg" alt="#"></a>
+                                                            src="{{asset('storage/assets/images/products/product-1.jpg')}}" alt="#"></a>
                                                 </div>
 
                                                 <div class="content">
@@ -181,7 +182,7 @@
                                                         class="lni lni-close"></i></a>
                                                 <div class="cart-img-head">
                                                     <a class="cart-img" href="product-details.html"><img
-                                                            src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
+                                                            src="{{asset('storage/assets/images/products/product-2.jpg')}}" alt="#"></a>
                                                 </div>
                                                 <div class="content">
                                                     <h4><a href="product-details.html">Wi-Fi Smart Camera</a></h4>
@@ -267,7 +268,7 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="contact_form.html" aria-label="Toggle navigation">Contact Us</a>
+                                        <a href="{{route('contactUS')}}" aria-label="Toggle navigation">Contact Us</a>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->

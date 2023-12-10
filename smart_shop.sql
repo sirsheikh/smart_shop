@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 10, 2023 at 04:54 PM
+-- Generation Time: Dec 10, 2023 at 06:25 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -109,14 +109,14 @@ CREATE TABLE IF NOT EXISTS `contact_us` (
   `message` text NOT NULL,
   `submission_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf32;
 
 --
 -- Dumping data for table `contact_us`
 --
 
 INSERT INTO `contact_us` (`id`, `contact_name`, `contact_phone`, `contact_email`, `message`, `submission_time`) VALUES
-(1, 'Syed Ali', '01745540795', 'godposeidon001@gmail.com', 'I just want to say that i have nothing to say', '2023-12-10 08:37:00');
+(1, 'ara', '54961', 'dfgdsh@g.fcg', 'asetcet', '2023-12-10 18:22:36');
 
 -- --------------------------------------------------------
 

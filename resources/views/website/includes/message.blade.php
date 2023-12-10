@@ -19,6 +19,7 @@
       }
     });
 </script>
+
 <div class="col-md-3">
     @if (Session::get('success'))
     <script>

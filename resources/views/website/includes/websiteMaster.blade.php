@@ -11,17 +11,19 @@
 		@include('website.includes.header')
 		<div class="">
 			<!-- initiate sidebar-->
-			{{--@include('sidebar')--}}
 			<div class="">
-				@include('website.includes.message')
+				
 				<!-- yeild contents here -->
 				
 				@yield('content')
 			</div>
 			@include('website.includes.footer')
 
+
 		</div>
 	</div>
+
 	@include('website.includes.scripts')	
+	@include('website.includes.message')
 </body>
 </html>
